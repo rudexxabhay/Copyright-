@@ -7,6 +7,11 @@ from COPYRIGHT2.modules import ALL_MODULES
 LOGGER_ID = -1002094142057
 
 loop = asyncio.get_event_loop()
+if loop.is_closed():
+        raise RuntimeError
+except RuntimeError:
+    loop = asyncio.new_event_loop()
+    asyncio.set_event_loop(loop)
 
 async def daxxpapa_boot():
     for all_module in ALL_MODULES:
